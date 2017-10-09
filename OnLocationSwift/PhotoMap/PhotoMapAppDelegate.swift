@@ -17,21 +17,40 @@ import UIKit
 import AWSCore
 import AWSCognito
 import AWSS3
+import AWSAuthCore
 
 @UIApplicationMain
 @objc(PhotoMapAppDelegate)
-class PhotoMapAppDelegate : NSObject, UIApplicationDelegate {
+class PhotoMapAppDelegate : UIResponder, UIApplicationDelegate {
 
     // The app delegate must implement the window @property
     // from UIApplicationDelegate @protocol to use a main storyboard file.
     //
     var window: UIWindow?
+    
+    var isInitialized = false
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
+        
+        let didFinishLaunching = AWSSignInManager.sharedInstance().interceptApplication(
+            application, didFinishLaunchingWithOptions: launchOptions)
+        
+        if (!isInitialized) {
+            AWSSignInManager.sharedInstance().resumeSession(completionHandler: {
+                (result: Any?, error: Error?) in
+                print("Result: \(String(describing: result)) \n Error:\(String(describing: error))")
+            })
+            
+            isInitialized = true
+            
+        }
      
 
-        return true
+        return didFinishLaunching
+        
     }
+    
 
 }

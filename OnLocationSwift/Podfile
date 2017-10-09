@@ -4,26 +4,8 @@ platform :ios, '10.2'
 use_frameworks!
 
 target :'PhotoMap' do
-    pod 'AWSAutoScaling'
-    pod 'AWSCloudWatch'
-    pod 'AWSCognito'
-    pod 'AWSCognitoIdentityProvider'
-    pod 'AWSDynamoDB'
-    pod 'AWSEC2'
-    pod 'AWSElasticLoadBalancing'
-    pod 'AWSIoT'
-    pod 'AWSKinesis'
-    pod 'AWSLambda'
-    pod 'AWSLex'
-    pod 'AWSMachineLearning'
-    pod 'AWSMobileAnalytics'
-    pod 'AWSPinpoint'
-    pod 'AWSPolly'
-    pod 'AWSRekognition'
-    pod 'AWSS3'
-    pod 'AWSSES'
-    pod 'AWSSimpleDB'
-    pod 'AWSSNS'
-    pod 'AWSSQS'
+    pod 'AWSS3', '~> 2.6.1'    # For file transfers
+    pod 'AWSCognito', '~> 2.6.1'    #For data sync
+    pod 'AWSAuthCore', '~> 2.6.1'
 end
 
